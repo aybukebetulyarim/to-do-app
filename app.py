@@ -2,7 +2,7 @@ from flask import Flask, render_template,request, redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/turkai/Desktop/todoapp/todo.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -22,7 +22,7 @@ def addTodo():
     db.session.commit()
     return redirect(url_for("index"))
 
-@app.route("/complete/<string:id>", methods=['POST'])
+@app.route("/complete/<string:id>", methods=["GET"])
 def completeToDo(id):
     todo = db.session.query(ToDo).filter(ToDo.id==id).first()
     if todo.complete == False:
@@ -47,9 +47,9 @@ def detailTodo(id):
     return render_template("detail.html", todo=todo)
 
 class ToDo(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(80))
-    content = db.Column(db.Text)
+    id       = db.Column(db.Integer, primary_key=True)
+    title    = db.Column(db.String(80))
+    content  = db.Column(db.Text)
     complete = db.Column(db.Boolean)
 
 db.create_all()
