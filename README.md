@@ -1,3 +1,3 @@
-# to_do_app
+# To Do App
 Python-Flask, ORM, SQLite, Bootstrap
-DEPLOYMENT OF THİS PROJECT https://todo-app-with-python.herokuapp.com/
+Deployment of this project; https://todo-app-with-python.herokuapp.com/
